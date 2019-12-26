@@ -119,8 +119,7 @@
             </div>
             <div class="cart-foot-r">
               <div class="item-total">
-                总价:
-                <span class="total-price">￥89.00元</span>
+                总价:<span class="total-price">￥89.00元</span>
               </div>
               <div class="btn-wrap">
                 <a class="btn btn--red btn--dis">结算</a>
