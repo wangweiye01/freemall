@@ -1,15 +1,7 @@
 <template>
   <div>
     <nav-header></nav-header>
-    <!-- 购物车商品内容 -->
-    <div class="nav-breadcrumb-wrap">
-      <div class="container">
-        <nav class="nav-breadcrumb">
-          <a href="/">首页</a>
-          <span>购物车</span>
-        </nav>
-      </div>
-    </div>
+    <Breadcrumb :breadName="breadName"></Breadcrumb>
     <!-- 定义购物车页面图标 -->
     <svg
       style="position: absolute; width: 0; height: 0; overflow: hidden;"
@@ -163,13 +155,17 @@
 <script>
 import NavHeader from './../components/Header'
 import NavFooter from './../components/Footer'
+import Breadcrumb from './../components/Breadcrumb'
 export default {
   data() {
-    return {}
+    return {
+      breadName: '购物车'
+    }
   },
   components: {
     NavHeader,
-    NavFooter
+    NavFooter,
+    Breadcrumb
   }
 }
 </script>

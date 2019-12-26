@@ -2,14 +2,15 @@
   <div id="app">
     <nav-header></nav-header>
     <!-- 面包屑 -->
-    <div class="nav-breadcrumb-wrap">
+    <!-- <div class="nav-breadcrumb-wrap">
       <div class="container">
         <nav class="nav-breadcrumb">
           <a href="/">首页</a>
           <span>地址</span>
         </nav>
       </div>
-    </div>
+    </div> -->
+    <Breadcrumb :breadName="breadName"></Breadcrumb>
     <!-- 地址确认 -->
     <div class="checkout-page">
       <svg
@@ -157,11 +158,18 @@
 <script>
 import NavHeader from './../components/Header'
 import NavFooter from './../components/Footer'
+import Breadcrumb from './../components/Breadcrumb'
 export default {
   name: 'addr',
   components: {
     NavHeader,
-    NavFooter
+    NavFooter,
+    Breadcrumb
+  },
+  data() {
+    return {
+      breadName: '地址'
+    }
   }
 }
 </script>

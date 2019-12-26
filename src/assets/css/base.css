@@ -332,7 +332,7 @@ a:hover {
 
 
 /** 面包屑 **/
-.nav-breadcrumb {
+/* .nav-breadcrumb {
   padding: 10px 0;
   line-height: 25px;
   font-size: 14px;
@@ -358,7 +358,7 @@ a:hover {
 
 .nav-breadcrumb span {
   color: #d1434a;
-}
+} */
 
 /** 普通页面标题 **/
 .page-title-normal {
