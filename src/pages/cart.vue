@@ -60,7 +60,12 @@
               <li v-for="(item, index) in cartList" :key="index">
                 <div class="cart-tab-1">
                   <div class="cart-item-check">
-                    <a href="javascipt:;" class="checkbox-btn item-check-btn" :class="{'checked':item.checked}">
+                    <a
+                      href="javascipt:;"
+                      class="checkbox-btn item-check-btn"
+                      :class="{'checked':item.checked}"
+                      @click="editCart('checked', item)"
+                    >
                       <svg class="icon icon-ok">
                         <use xlink:href="#icon-ok" />
                       </svg>
@@ -80,15 +85,17 @@
                   <div class="item-quantity">
                     <div class="select-self select-self-open">
                       <div class="select-self-area">
-                        <a class="input-sub">-</a>
+                        <a class="input-sub" @click="editCart('minus', item)">-</a>
                         <span class="select-ipt">{{item.productNum}}</span>
-                        <a class="input-add">+</a>
+                        <a class="input-add" @click="editCart('add', item)">+</a>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div class="cart-tab-4">
-                  <div class="item-price-total">￥{{item.productPrice * item.productNum}}元</div>
+                  <div
+                    class="item-price-total"
+                  >{{ (item.productPrice * item.productNum) | currency}}</div>
                 </div>
                 <div class="cart-tab-5">
                   <div class="cart-item-opration">
@@ -119,7 +126,8 @@
             </div>
             <div class="cart-foot-r">
               <div class="item-total">
-                总价:<span class="total-price">￥89.00元</span>
+                总价:
+                <span class="total-price">￥89.00元</span>
               </div>
               <div class="btn-wrap">
                 <a class="btn btn--red btn--dis">结算</a>
@@ -168,14 +176,31 @@ export default {
     Breadcrumb
   },
   mounted() {
-    this.init();
+    this.init()
+  },
+  filters: {
+    currency(value) {
+      if (!value) return 0.0
+      return '￥' + value.toFixed(2) + '元'
+    }
   },
   methods: {
+    // 初始化购物车列表
     init() {
-      this.axios.get("/cart.json").then((response) => {
-        let res =  response.data;
+      this.axios.get('/cart.json').then(response => {
+        let res = response.data
         this.cartList = res.data
       })
+    },
+    // 修改购物车数量
+    editCart(type, item) {
+      if (type === 'add') {
+        item.productNum++
+      } else if (type === 'minus') {
+        item.productNum--
+      } else {
+        item.checked = !item.checked
+      }
     }
   }
 }
