@@ -155,13 +155,13 @@
   </div>
 </template>
 <script>
-import NavHeader from "./../components/Header";
-import NavFooter from "./../components/Footer";
+import NavHeader from './../components/Header'
+import NavFooter from './../components/Footer'
 export default {
-  name: "addr",
+  name: 'addr',
   components: {
     NavHeader,
     NavFooter
   }
-};
+}
 </script>

@@ -161,15 +161,15 @@
   </div>
 </template>
 <script>
-import NavHeader from "./../components/Header";
-import NavFooter from "./../components/Footer";
+import NavHeader from './../components/Header'
+import NavFooter from './../components/Footer'
 export default {
   data() {
-    return {};
+    return {}
   },
   components: {
     NavHeader,
     NavFooter
   }
-};
+}
 </script>
