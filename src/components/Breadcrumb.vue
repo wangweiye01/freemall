@@ -3,7 +3,7 @@
     <div class="container">
       <nav class="nav-breadcrumb">
         <a href="/">首页</a>
-        <span>{{ breadName }}</span>
+        <span>{{ title }}</span>
       </nav>
     </div>
   </div>
@@ -11,7 +11,7 @@
 <script>
 export default {
   props: {
-    breadName: {
+    title: {
       type: String
     }
   }

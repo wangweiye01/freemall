@@ -1,7 +1,7 @@
 <template>
   <div>
     <nav-header></nav-header>
-    <Breadcrumb :breadName="breadName"></Breadcrumb>
+    <Breadcrumb :title="title"></Breadcrumb>
     <!-- 定义购物车页面图标 -->
     <svg
       style="position: absolute; width: 0; height: 0; overflow: hidden;"
@@ -159,7 +159,7 @@ import Breadcrumb from './../components/Breadcrumb'
 export default {
   data() {
     return {
-      breadName: '购物车'
+      title: '购物车'
     }
   },
   components: {

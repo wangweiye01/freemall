@@ -10,7 +10,7 @@
         </nav>
       </div>
     </div> -->
-    <Breadcrumb :breadName="breadName"></Breadcrumb>
+    <Breadcrumb :title="title"></Breadcrumb>
     <!-- 地址确认 -->
     <div class="checkout-page">
       <svg
@@ -168,7 +168,7 @@ export default {
   },
   data() {
     return {
-      breadName: '地址'
+      title: '地址'
     }
   }
 }
