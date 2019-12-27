@@ -127,10 +127,10 @@
             <div class="cart-foot-r">
               <div class="item-total">
                 总价:
-                <span class="total-price">￥89.00元</span>
+                <span class="total-price">{{ totalPrice | currency }}</span>
               </div>
               <div class="btn-wrap">
-                <a class="btn btn--red btn--dis">结算</a>
+                <a class="btn btn--red" :class="{'btn--dis': !checkedCount}">结算</a>
               </div>
             </div>
           </div>
@@ -173,8 +173,24 @@ export default {
   },
   computed: {
     checkAllFlag() {
-      // 当数组中所有对象都返回true的时候，整体返回true;否则返回false
+      // 对数组中每一项运行给定函数，如果该函数对每一项返回true,则返回true了；否则返回false
       return this.cartList.every(item => {
+        return item.checked
+      })
+    },
+    totalPrice() {
+      let money = 0
+      this.cartList.forEach(item => {
+        if (item.checked) {
+          money += item.productPrice
+        }
+      })
+
+      return money
+    },
+    checkedCount() {
+      // 对数组中每一项运行给定函数，如果该函数对任一项返回true，则返回true；否则返回false
+      return this.cartList.some(item => {
         return item.checked
       })
     }
@@ -197,9 +213,9 @@ export default {
     editCart(type, item) {
       if (type === 'add') {
         item.productNum++
-      } else if (type === 'minus') {
+      } else if (type === 'minus' && item.productNum > 0) {
         item.productNum--
-      } else {
+      } else if (type === 'checked') {
         item.checked = !item.checked
       }
     },
