@@ -130,7 +130,7 @@
                 <span class="total-price">{{ totalPrice | currency }}</span>
               </div>
               <div class="btn-wrap">
-                <a class="btn btn--red" :class="{'btn--dis': !checkedCount}">结算</a>
+                <a class="btn btn--red" :class="{'btn--dis': !checkedCount}" @click="checkOut">结算</a>
               </div>
             </div>
           </div>
@@ -245,6 +245,14 @@ export default {
       this.cartList.forEach(item => {
         item.checked = flag
       })
+    },
+    // 结算
+    checkOut() {
+      if (this.checkedCount) {
+        this.$router.push({
+          path: '/address'
+        })
+      }
     }
   }
 }
