@@ -57,7 +57,7 @@
               </ul>
             </div>
             <ul class="cart-item-list">
-              <li v-for="(item, index) in cartList" :key="index">
+              <li v-for="item in cartList" :key="item.productId">
                 <div class="cart-tab-1">
                   <div class="cart-item-check">
                     <a
@@ -99,7 +99,7 @@
                 </div>
                 <div class="cart-tab-5">
                   <div class="cart-item-opration">
-                    <a href="javascript:;" class="item-edit-btn">
+                    <a href="javascript:;" class="item-edit-btn" @click="delCartConfirm(item)">
                       <svg class="icon icon-del">
                         <use xlink:href="#icon-del" />
                       </svg>
@@ -137,43 +137,36 @@
         </div>
       </div>
     </div>
-    <div style="display: none;">
-      <div class="md-modal modal-msg md-modal-transition md-show">
-        <div class="md-modal-inner">
-          <div class="md-top">
-            <button class="md-close">关闭</button>
-          </div>
-          <div class="md-content">
-            <div class="confirm-tips">
-              <p slot="message">你确认要删除此条数据吗?</p>
-            </div>
-            <div class="btn-wrap">
-              <a slot="btnGroup" class="btn btn--m" href="javascript:;">确认</a>
-              <a slot="btnGroup" class="btn btn--m btn--red" href="javascript:;">关闭</a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="md-overlay"></div>
-    </div>
     <nav-footer></nav-footer>
+    <modal :mdShow="modalConfirm" @close="closeModal">
+      <template v-slot:message>确认删除？？</template>
+
+      <template v-slot:btnGroup>
+        <a class="btn btn--m" href="javascript:;" @click="delCart">确认</a>
+        <a class="btn btn--m btn--red" href="javascript:;" @click="closeModal">取消</a>
+      </template>
+    </modal>
   </div>
 </template>
 <script>
 import NavHeader from './../components/Header'
 import NavFooter from './../components/Footer'
 import Breadcrumb from './../components/Breadcrumb'
+import Modal from './../components/Modal'
 export default {
   data() {
     return {
       title: '购物车',
-      cartList: []
+      cartList: [],
+      modalConfirm: false,
+      delItem: ''
     }
   },
   components: {
     NavHeader,
     NavFooter,
-    Breadcrumb
+    Breadcrumb,
+    Modal
   },
   mounted() {
     this.init()
@@ -201,6 +194,26 @@ export default {
       } else {
         item.checked = !item.checked
       }
+    },
+    // 删除数据确认弹框
+    delCartConfirm(item) {
+      // 将要删除的item
+      this.delItem = item
+      // 显示modal
+      this.modalConfirm = true
+    },
+    closeModal() {
+      this.modalConfirm = false
+    },
+    // 删除购物车数据
+    delCart() {
+      let delItem = this.delItem
+      this.cartList.forEach((item, index) => {
+        if (item.productId === delItem.productId) {
+          this.cartList.splice(index, 1)
+          this.modalConfirm = false
+        }
+      })
     }
   }
 }
