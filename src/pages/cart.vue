@@ -149,10 +149,10 @@
   </div>
 </template>
 <script>
-import NavHeader from './../components/Header'
-import NavFooter from './../components/Footer'
-import Breadcrumb from './../components/Breadcrumb'
-import Modal from './../components/Modal'
+import NavHeader from '../components/Header'
+import NavFooter from '../components/Footer'
+import Breadcrumb from '../components/Breadcrumb'
+import Modal from '../components/Modal'
 export default {
   data() {
     return {
@@ -226,7 +226,7 @@ export default {
     // 全选和反选
     toggleCheckAll() {
       let flag = !this.checkAllFlag
-      this.cartList.forEach((item) => {
+      this.cartList.forEach(item => {
         item.checked = flag
       })
     }
