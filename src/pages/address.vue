@@ -2,14 +2,6 @@
   <div id="app">
     <nav-header></nav-header>
     <!-- 面包屑 -->
-    <!-- <div class="nav-breadcrumb-wrap">
-      <div class="container">
-        <nav class="nav-breadcrumb">
-          <a href="/">首页</a>
-          <span>地址</span>
-        </nav>
-      </div>
-    </div>-->
     <Breadcrumb :title="title"></Breadcrumb>
     <!-- 地址确认 -->
     <div class="checkout-page">
