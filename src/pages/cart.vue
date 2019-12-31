@@ -182,7 +182,7 @@ export default {
       let money = 0
       this.cartList.forEach(item => {
         if (item.checked) {
-          money += item.productPrice
+          money += item.productPrice * item.productNum
         }
       })
 
