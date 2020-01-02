@@ -5,6 +5,7 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 import './assets/css/base.css'
 import './assets/css/index.css'
+import store from './store'
 
 Vue.use(VueAxios,axios);
 
@@ -12,5 +13,6 @@ Vue.use(VueAxios,axios);
 Vue.config.productionTip = false
 new Vue({
   router,
+  store,
   render: h => h(App),
 }).$mount('#app')

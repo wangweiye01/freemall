@@ -153,6 +153,7 @@ import NavHeader from '../components/Header'
 import NavFooter from '../components/Footer'
 import Breadcrumb from '../components/Breadcrumb'
 import Modal from '../components/Modal'
+import { mapGetters } from 'vuex'
 export default {
   data() {
     return {
@@ -193,7 +194,8 @@ export default {
       return this.cartList.some(item => {
         return item.checked
       })
-    }
+    },
+    ...mapGetters(['showAvatar'])
   },
   filters: {
     currency(value) {
@@ -245,6 +247,9 @@ export default {
       this.cartList.forEach(item => {
         item.checked = flag
       })
+
+      // 修改vuex中的值
+      this.$store.dispatch('settings/changeAvatarShow', !this.showAvatar)
     },
     // 结算
     checkOut() {
