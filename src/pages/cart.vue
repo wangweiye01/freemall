@@ -174,6 +174,9 @@ export default {
   },
   computed: {
     checkAllFlag() {
+      // 修改vuex中的值
+      this.$store.dispatch('settings/changeAvatarShow', !this.showAvatar)
+
       // 对数组中每一项运行给定函数，如果该函数对每一项返回true,则返回true了；否则返回false
       return this.cartList.every(item => {
         return item.checked
@@ -247,9 +250,6 @@ export default {
       this.cartList.forEach(item => {
         item.checked = flag
       })
-
-      // 修改vuex中的值
-      this.$store.dispatch('settings/changeAvatarShow', !this.showAvatar)
     },
     // 结算
     checkOut() {
